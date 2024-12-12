@@ -1,0 +1,135 @@
+name: AdventOfCode
+options:
+  bundleIdPrefix: cz.lukashromadnik
+targets:
+  Snowverload:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Snowverload]
+  Hailstone:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Hailstone]
+  LongWalk:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/LongWalk]
+  SandSlabs:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/SandSlabs]
+  StepCounter:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/StepCounter]
+  PulsePropagation:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/PulsePropagation]
+  Aplenty:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Aplenty]
+  LavaductLagoon:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/LavaductLagoon]
+  Crucible:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Crucible]
+    dependencies:
+      - package: Collections
+  FloorIsLava:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/FloorIsLava]
+  Hash:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Hash]
+  ReflectorDish:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/ReflectorDish]
+  PointOfIncidence:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/PointOfIncidence]
+  HotSprings:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/HotSprings]
+  CosmicExpansion:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/CosmicExpansion]
+  PipeMaze:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/PipeMaze]
+  MirageMaintenance:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/MirageMaintenance]
+  Wasteland:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Wasteland]
+  CamelCards:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/CamelCards]
+  BoatRace:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/BoatRace]
+  Fertilizer:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Fertilizer]
+  Scratchcards:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/Scratchcards]
+  GearRatios:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/GearRatios]
+  CubeConundrum:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/CubeConundrum]
+  CalibrationValues:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/CalibrationValues]
+packages:
+  Collections:
+    url: https://github.com/apple/swift-collections
+    from: 1.0.5

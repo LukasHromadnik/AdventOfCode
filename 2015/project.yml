@@ -1,0 +1,13 @@
+name: AdventOfCode
+options:
+  bundleIdPrefix: cz.lukashromadnik
+targets:
+  NotQuiteLisp:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/NotQuiteLisp]
+packages:
+  Collections:
+    url: https://github.com/apple/swift-collections
+    from: 1.0.5
