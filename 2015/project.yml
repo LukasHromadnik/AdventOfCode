@@ -12,6 +12,21 @@ targets:
     platform: macOS
     deploymentTarget: "14.0"
     sources: [Sources/WrappingPaper]
+  PresentsDelivery:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/PresentsDelivery]
+  AdventCoins:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/AdventCoins]
+  NiceString:
+    type: tool
+    platform: macOS
+    deploymentTarget: "14.0"
+    sources: [Sources/NiceString]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
