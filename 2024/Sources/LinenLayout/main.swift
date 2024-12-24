@@ -53,4 +53,3 @@ for pattern in patterns {
     count += canMake
 }
 print(count)
-

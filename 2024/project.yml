@@ -103,6 +103,33 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/LinenLayout]
+  RaceCondition:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/RaceCondition]
+  KeypadConundrum:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/KeypadConundrum]
+    dependencies:
+      - package: Collections
+  MonkeyMarket:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/MonkeyMarket]
+  LanParty:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/LanParty]
+  CrossedWires:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/CrossedWires]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections

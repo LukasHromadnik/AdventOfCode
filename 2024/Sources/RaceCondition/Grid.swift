@@ -2,17 +2,6 @@ import Foundation
 
 protocol GridElement: Hashable, Equatable, RawRepresentable<String> { }
 
-extension String: @retroactive RawRepresentable {}
-extension String: GridElement {
-    public var rawValue: String {
-        self
-    }
-
-    public init?(rawValue: String) {
-        self = rawValue
-    }
-}
-
 struct Grid<Element: GridElement> {
     struct Row {
         var items: [Element]
