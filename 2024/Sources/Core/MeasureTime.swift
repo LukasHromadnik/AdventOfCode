@@ -1,6 +1,6 @@
 import Foundation
 
-func measureTime(
+public func measureTime(
     _ closure: () async -> Void
 ) async {
     let start = Date()

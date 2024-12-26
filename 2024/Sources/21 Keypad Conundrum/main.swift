@@ -1,4 +1,5 @@
 import Foundation
+import Core
 import Collections
 
 let input = """
@@ -132,11 +133,12 @@ func computeLengthOfCode(_ codeInput: String, depth: Int) async -> Int {
         return length
     }
 
-    let path = (1..<code.count).map { i in
-        let key = code[i - 1] + code[i]
-        return translations[key]!
-    }
-    .joined()
+//    let path = (1..<code.count).map { i in
+//        let key = code[i - 1] + code[i]
+//        return translations[key]!
+//    }
+//    .joined()
+    let path = "TODO"
 
     let pathLength = await computeLengthOfCode(path, depth: depth - 1)
 

@@ -2,134 +2,145 @@ name: AdventOfCode
 options:
   bundleIdPrefix: cz.lukashromadnik
 targets:
+  Core:
+    type: framework
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/Core]
   HistorianHysteria:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/HistorianHysteria]
+    sources: [Sources/01 Historian Hysteria]
   RedNosedReports:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/RedNosedReports]
+    sources: [Sources/02 Red Nosed Reports]
   MullItOver:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/MullItOver]
+    sources: [Sources/03 Mull It Over]
   CeresSearch:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/CeresSearch]
+    sources: [Sources/04 Ceres Search]
   PrintQueue:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/PrintQueue]
+    sources: [Sources/05 Print Queue]
   GuardGallivant:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/GuardGallivant]
+    sources: [Sources/06 Guard Gallivant]
   BridgeRepair:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/BridgeRepair]
+    sources: [Sources/07 Bridge Repair]
   ResonantCollinearity:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/ResonantCollinearity]
+    sources: [Sources/08 Resonant Collinearity]
     dependencies:
       - package: Algorithms
   DiskFragmenter:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/DiskFragmenter]
+    sources: [Sources/09 Disk Fragmenter]
   HoofIt:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/HoofIt]
+    sources: [Sources/10 Hoof It]
   PlutonianPebbles:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/PlutonianPebbles]
+    sources: [Sources/11 Plutonian Pebbles]
   GardenGroups:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/GardenGroups]
+    sources: [Sources/12 Garden Groups]
   ClawContraption:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/ClawContraption]
+    sources: [Sources/13 Claw Contraption]
   RestroomRedoubt:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/RestroomRedoubt]
+    sources: [Sources/14 Restroom Redoubt]
   WarehouseWoes:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/WarehouseWoes]
+    sources: [Sources/15 Warehouse Woes]
   ReindeerMaze:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/ReindeerMaze]
+    sources: [Sources/16 Reindeer Maze]
     dependencies:
       - package: Collections
   ChronospatialComputer:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/ChronospatialComputer]
+    sources: [Sources/17 Chronospatial Computer]
   RamRun:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/RamRun]
+    sources: [Sources/18 Ram Run]
     dependencies:
       - package: Collections
   LinenLayout:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/LinenLayout]
+    sources: [Sources/19 Linen Layout]
   RaceCondition:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/RaceCondition]
+    sources: [Sources/20 Race Condition]
   KeypadConundrum:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/KeypadConundrum]
+    sources: [Sources/21 Keypad Conundrum]
     dependencies:
+      - target: Core
       - package: Collections
   MonkeyMarket:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/MonkeyMarket]
+    sources: [Sources/22 Monkey Market]
   LanParty:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/LanParty]
+    sources: [Sources/23 Lan Party]
   CrossedWires:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/CrossedWires]
+    sources: [Sources/24 Crossed Wires]
+  CodeChronicle:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/25 Code Chronicle]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections

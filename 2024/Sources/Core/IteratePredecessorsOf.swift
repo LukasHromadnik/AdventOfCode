@@ -1,6 +1,6 @@
 import Foundation
 
-func iteratePredecessorsOf<T>(
+public func iteratePredecessorsOf<T>(
     _ node: T,
     by predecessorKeyPath: KeyPath<T, T?>,
     closure: (T) -> Void
@@ -12,11 +12,11 @@ func iteratePredecessorsOf<T>(
     }
 }
 
-protocol HasPredecessor {
+public protocol HasPredecessor {
     var predecessor: Self? { get }
 }
 
-func iteratePredecessorsOf<T: HasPredecessor>(
+public func iteratePredecessorsOf<T: HasPredecessor>(
     _ node: T,
     closure: (T) -> Void
 ) {

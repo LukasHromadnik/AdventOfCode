@@ -1,27 +1,27 @@
 import Foundation
 
-struct Point: Hashable {
+public struct Point: Hashable {
     let i: Int
     let j: Int
 
-    init(_ i: Int, _ j: Int) {
+    public init(_ i: Int, _ j: Int) {
         self.i = i
         self.j = j
     }
 
-    func up() -> Point {
+    public func up() -> Point {
         Point(i - 1, j)
     }
 
-    func left() -> Point {
+    public func left() -> Point {
         Point(i, j - 1)
     }
 
-    func down() -> Point {
+    public func down() -> Point {
         Point(i + 1, j)
     }
 
-    func right() -> Point {
+    public func right() -> Point {
         Point(i, j + 1)
     }
 }

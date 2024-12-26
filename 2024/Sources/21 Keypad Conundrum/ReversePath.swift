@@ -1,4 +1,5 @@
 import Foundation
+import Core
 
 func reversePath(_ path: String, onGrid grid: Grid<String>) -> String {
     var point = grid.find("A")!
