@@ -10,7 +10,11 @@ let input = """
 379A
 """
 
-func findPathsOnGrid(_ grid: Grid<String>, start: Point, end: Point) -> [String] {
+func findPathsOnGrid(
+    _ grid: Grid<String>,
+    start: Point,
+    end: Point
+) -> [String] {
     var heap: Heap<Node> = [Node(point: start, orientation: .start)]
     var endNodes: [Node] = []
 
@@ -69,123 +73,92 @@ func findPathsOnGrid(_ grid: Grid<String>, start: Point, end: Point) -> [String]
     }
 }
 
-actor Storage {
-    private var storage: [[String: Int]]
-
-    init(depth: Int) {
-        storage = Array(repeating: [:], count: depth + 1)
-    }
-
-    func valueForCode(_ code: String, inDepth depth: Int) -> Int? {
-        storage[depth][code]
-    }
-
-    func setValue(_ value: Int, forCode code: String, inDepth depth: Int) {
-        storage[depth][code] = value
-    }
-}
-
-let storage = Storage(depth: 26)
-
-let numberKeypadString = """
-789
-456
-123
-#0A
-"""
-var numberKeypad = Grid<String>(numberKeypadString)
-
-let directionalKeypadString = """
-#^A
-<v>
-"""
-var directionalKeypad = Grid<String>(directionalKeypadString)
-
-@MainActor
-func computeLengthOfCode(_ codeInput: String, depth: Int) async -> Int {
-    print("CLOF", codeInput, depth)
-    if depth == 0 {
-        if codeInput.hasPrefix("A") {
-            return codeInput.count - 1
-        } else {
-            return codeInput.count
-        }
-    }
-
-    if let length = await storage.valueForCode(codeInput, inDepth: depth) {
-        return length
-    }
-
-    let code = Array(codeInput).map(String.init)
-    let subcodes = (1..<code.count).map { code[$0 - 1] + code[$0] }
-    var sublengths: [Int] = []
-    for subcode in subcodes {
-        if let sublength = await storage.valueForCode(subcode, inDepth: depth) {
-            sublengths.append(sublength)
-        } else {
-            break
-        }
-    }
-
-    if subcodes.count == sublengths.count {
-        let length = sublengths.reduce(0, +)
-        await storage.setValue(length, forCode: codeInput, inDepth: depth)
-        return length
-    }
-
-//    let path = (1..<code.count).map { i in
-//        let key = code[i - 1] + code[i]
-//        return translations[key]!
-//    }
-//    .joined()
-    let path = "TODO"
-
-    let pathLength = await computeLengthOfCode(path, depth: depth - 1)
-
-    await storage.setValue(pathLength, forCode: codeInput, inDepth: depth)
-
-    return pathLength
-}
-
-func findCodePaths(_ code: String, onGrid grid: Grid<String>) -> [String] {
+func findCodePaths(
+    _ code: String,
+    onGrid grid: Grid<String>
+) -> [String] {
     let code = Array(code).map(String.init)
-    var paths: [String] = [""]
+    var paths = [""]
 
-    (1..<code.count).forEach { i in
-        let start = grid.find(code[i - 1])!
-        let end = grid.find(code[i])!
-        let childPaths = findPathsOnGrid(grid, start: start, end: end).map { $0 + "A" }
-        paths = paths.flatMap { path in
-            childPaths.map { path + $0 }
+    for i in 1..<code.count {
+        let start = code[i - 1]
+        let end = code[i]
+        let startPoint = grid.find(start)!
+        let endPoint = grid.find(end)!
+        let newPaths = findPathsOnGrid(grid, start: startPoint, end: endPoint).map { $0 + "A" }
+        paths = paths.flatMap { old in
+            newPaths.map { old + $0 }
         }
     }
 
     return paths
 }
 
-let codes = input.components(separatedBy: "\n")
-//var result = Array(repeating: 0, count: codes.count)
-var result = 0
+var storage: [[String: Int]] = Array(repeating: [:], count: 26)
 
-await measureTime {
-//    DispatchQueue.concurrentPerform(iterations: codes.count) { i in
-//    for i in 0..<codes.count {
-    let i = 0
-        let code = codes[i]
-        let paths = findCodePaths("A" + code, onGrid: numberKeypad)
-        var pathLengths: [Int] = []
-        for path in paths {
-            let pathLength = await computeLengthOfCode("A" + path, depth: 2)
-            print("PTLN", path, pathLength)
-            pathLengths.append(pathLength)
-        }
-        let pathLength = pathLengths.min()!
-
+let codes = mainInput.components(separatedBy: "\n")
+let result = codes
+    .map { code in
+        let length = findCodePaths("A" + code, onGrid: numberKeypad)
+            .map { codeLength($0, depth: 25) }
+            .min()!
         let numericCode = Int(code.dropLast())!
+        return length * numericCode
+    }
+    .reduce(0, +)
+print(result)
 
-        print(code, pathLength)
+func codeLength(_ code: String, depth: Int) -> Int {
+    guard depth > 0 else { return code.count }
 
-        result += pathLength * numericCode
-//    }
-    print(result)
+    let components = code.components(separatedBy: "A").dropLast().map { "A" + $0 + "A" }
+    let lengths = components
+        .map {
+            if let length = storage[depth][$0] {
+                return length
+            } else {
+                let length = findCodePaths($0, onGrid: directionalKeypad)
+                    .map { codeLength($0, depth: depth - 1) }
+                    .min()!
+                storage[depth][$0] = length
+                return length
+            }
+        }
+        .reduce(0, +)
+
+    return lengths
 }
+
+func testCodeLength() {
+    let code = "<A^A^^>AvvvA"
+    let code1 = "v<<A>>^A<A>A<AAv>A^Av<AAA>^A"
+    let code2 = "<vA<AA>>^AvAA<^A>Av<<A>>^AvA^Av<<A>>^AA<vA>A^A<A>A<vA<A>>^AAAvA^<A>A"
+
+    assert(codeLength(code, depth: 0) == code.count)
+    assert(codeLength(code, depth: 1) == code1.count)
+    assert(codeLength(code, depth: 2) == code2.count)
+}
+
+func testPart1() {
+    assert(solveInput(input) == 126384)
+    assert(solveInput(mainInput) == 246990)
+}
+
+func solveInput(_ input: String) -> Int {
+    input.components(separatedBy: "\n")
+        .map { code in
+            let length = findCodePaths("A" + code, onGrid: numberKeypad)
+                .map { codeLength($0, depth: 2) }
+                .min()!
+            let numericCode = Int(code.dropLast())!
+            return length * numericCode
+        }
+        .reduce(0, +)
+}
+
+func test() {
+    testCodeLength()
+    testPart1()
+}
+
+//test()
