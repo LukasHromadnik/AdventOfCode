@@ -97,21 +97,25 @@ func findCodePaths(
 var storage: [[String: Int]] = Array(repeating: [:], count: 26)
 
 let codes = mainInput.components(separatedBy: "\n")
-let result = codes
-    .map { code in
-        let length = findCodePaths("A" + code, onGrid: numberKeypad)
-            .map { codeLength($0, depth: 25) }
-            .min()!
-        let numericCode = Int(code.dropLast())!
-        return length * numericCode
-    }
-    .reduce(0, +)
-print(result)
+await measureTime {
+    storage = Array(repeating: [:], count: 26)
+    let result = codes
+        .map { code in
+            let length = findCodePaths("A" + code, onGrid: numberKeypad)
+                .map { codeLength($0, depth: 25) }
+                .min()!
+            let numericCode = Int(code.dropLast())!
+            return length * numericCode
+        }
+        .reduce(0, +)
+    print(result)
+}
 
 func codeLength(_ code: String, depth: Int) -> Int {
     guard depth > 0 else { return code.count }
 
-    let components = code.components(separatedBy: "A").dropLast().map { "A" + $0 + "A" }
+    let _code = Array("A" + code).map(String.init)
+    let components = (1..<_code.count).map { _code[$0 - 1] + _code[$0] }
     let lengths = components
         .map {
             if let length = storage[depth][$0] {

@@ -1,9 +1,12 @@
 import Foundation
 
+@discardableResult
 public func measureTime(
     _ closure: () async -> Void
-) async {
+) async -> TimeInterval {
     let start = Date()
     await closure()
-    print("Duration", Date().timeIntervalSince(start))
+    let duration = Date().timeIntervalSince(start)
+    print("Duration", duration)
+    return duration
 }
