@@ -1,22 +1,24 @@
 import Foundation
 
-public func iteratePredecessorsOf<T>(
+public func mapPredecessorsOf<T, Value>(
     _ node: T,
     by predecessorKeyPath: KeyPath<T, T?>,
-    closure: (T) -> Void
-) {
+    closure: (T) -> Value
+) -> [Value] {
     var predecessor: T! = node
+    var values: [Value] = []
     while predecessor != nil {
-        closure(predecessor)
+        values.append(closure(predecessor))
         predecessor = predecessor[keyPath: predecessorKeyPath]
     }
+    return values
 }
 
-public func iteratePredecessorsOf<T: HasPredecessor>(
+public func mapPredecessorsOf<T: HasPredecessor, Value>(
     _ node: T,
-    closure: (T) -> Void
-) {
-    iteratePredecessorsOf(
+    closure: (T) -> Value
+) -> [Value] {
+    mapPredecessorsOf(
         node,
         by: \.predecessor,
         closure: closure

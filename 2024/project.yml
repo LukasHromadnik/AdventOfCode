@@ -113,6 +113,8 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/20 Race Condition]
+    dependencies:
+      - target: Core
   KeypadConundrum:
     type: tool
     platform: macOS

@@ -1,8 +1,8 @@
 import Foundation
 
 public struct Point: Hashable {
-    let i: Int
-    let j: Int
+    public let i: Int
+    public let j: Int
 
     public init(_ i: Int, _ j: Int) {
         self.i = i
@@ -23,5 +23,15 @@ public struct Point: Hashable {
 
     public func right() -> Point {
         Point(i, j + 1)
+    }
+
+    public func neighbors() -> [Point] {
+        [up(), left(), down(), right()]
+    }
+}
+
+extension Point: CustomStringConvertible {
+    public var description: String {
+        "[\(i), \(j)]"
     }
 }

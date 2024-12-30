@@ -20,7 +20,9 @@ public struct Grid<Element: GridElement> {
         public var count: Int { items.count }
 
         init(_ string: String) {
-            items = Array(string).map(String.init).compactMap(Element.init(rawValue:))
+            items = Array(string)
+                .map(String.init)
+                .compactMap(Element.init(rawValue:))
         }
 
         public subscript(_ col: Int) -> Element {
