@@ -1,81 +1,5 @@
 import Foundation
 
-//assert(canPlaceHashes(count: 2, from: 0, in: Array(".??..??...?##")) == false)
-//assert(canPlaceHashes(count: 2, from: 1, in: Array(".??..??...?##")))
-//assert(canPlaceHashes(count: 2, from: 2, in: Array(".??..??...?##")) == false)
-//assert(canPlaceHashes(count: 1, from: 0, in: Array(".??..??...?##")) == false)
-//assert(canPlaceHashes(count: 1, from: 1, in: Array(".??..??...?##")))
-//assert(canPlaceHashes(count: 1, from: 2, in: Array(".??..??...?##")))
-//assert(canPlaceHashes(count: 1, from: 3, in: Array(".??..??...?##")) == false)
-
-func canPlaceHashes(count: Int, from i: Int, in text: [String.Element]) -> Bool {
-    if i > 0 && text[i - 1] == "#" {
-        return false
-    }
-    
-    for j in 0..<count {
-        if i + j >= text.count {
-            return false
-        }
-        
-        if text[i + j] != "?" && text[i + j] != "#" {
-            return false
-        }
-    }
-    if i + count == text.count {
-        return true
-    }
-    if text[i + count] == "." || text[i + count] == "?" {
-        return true
-    }
-    return false
-}
-
-func numberOfCombinations(
-    in text: [String.Element],
-    counts: [Int]
-) -> Int {
-    print(#function, String(text), counts)
-    var combinations = 0
-
-    for i in 0..<text.count {
-
-        // Skip dots, they are useless
-        if text[i] == "." { continue }
-
-        if i > 0 && i < text.count && text[i - 1] == "#" { break }
-
-        // Check if you can place hashes at the given index
-        if canPlaceHashes(count: counts[0], from: i, in: text) {
-            print("canPlase", counts[0], i)
-
-            // If it's the last hash update the number of combinations
-            if counts.count == 1 {
-                print("combinations + 1")
-                combinations += 1
-            }
-            // Otherwise run the algorithm for the next hash count
-            else {
-                if i + counts[0] + 1 >= text.count {
-                    break
-                }
-                let remaining = Array(text[(i + counts[0] + 1)...])
-                combinations += numberOfCombinations(
-                    in: remaining,
-                    counts: Array(counts.dropFirst())
-                )
-            }
-        }
-        // If we're not able to place hashes at the current position
-        // and at the current position there is hash
-        // we know we would create an invalid sequence,
-        // so we can skip the computation.
-//        else if text[i] == "#" { return 0 }
-    }
-    print("return", combinations)
-    return combinations
-}
-
 let input = """
 ???.### 1,1,3
 .??..??...?##. 1,1,3
@@ -85,32 +9,93 @@ let input = """
 ?###???????? 3,2,1
 """
 
-func numberOfCombinations(for line: String) -> Int {
-    let parts = line.components(separatedBy: " ")
-    let text = parts[0].replacing(/\.+/, with: ".")
-    let counts = parts[1].components(separatedBy: ",").compactMap(Int.init)
+let numberOfRepeats = 5
+let springs = mainInput.components(separatedBy: "\n")
+    .map {
+        let c = $0.components(separatedBy: " ")
+        let pattern = Array(repeating: c[0], count: numberOfRepeats).joined(separator: "?")
+        let values = Array(repeating: c[1], count: numberOfRepeats).joined(separator: ",").components(separatedBy: ",").compactMap(Int.init)
+        return (pattern, values)
+    }
 
-    return numberOfCombinations(
-        in: Array(text),
-        counts: counts
-    )
+var results = Array(repeating: 0, count: springs.count)
+iterate(count: springs.count) { i in
+    let spring = springs[i]
+    let hashes = spring.1.map { Array(repeating: "#", count: $0).joined() }
+    let regex = Array("." + hashes.joined(separator: ".") + ".").map(String.init)
+    let pattern = Array(spring.0).map(String.init)
+
+    var states = Array(repeating: 0, count: regex.count)
+    states[0] = 1
+
+    for i in 0..<pattern.count {
+        for state in (0..<states.count).reversed() {
+            guard states[state] > 0 else { continue }
+
+            let nextState = min(state + 1, states.count - 1)
+            let transition = regex[state] + regex[nextState]
+
+            switch transition {
+            case ".#":
+                switch pattern[i] {
+                case ".":
+                    break
+                case "#":
+                    states[nextState] += states[state]
+                    states[state] = 0
+                case "?":
+                    states[nextState] += states[state]
+                default:
+                    fatalError()
+                }
+
+            case "##":
+                switch pattern[i] {
+                case ".":
+                    states[state] = 0
+                case "#":
+                    states[nextState] += states[state]
+                    states[state] = 0
+                case "?":
+                    states[nextState] += states[state]
+                    states[state] = 0
+                default:
+                    fatalError()
+                }
+
+            case "#.":
+                switch pattern[i] {
+                case ".":
+                    states[nextState] += states[state]
+                    states[state] = 0
+                case "#":
+                    states[state] = 0
+                case "?":
+                    states[nextState] += states[state]
+                    states[state] = 0
+                default:
+                    fatalError()
+                }
+
+            case "..":
+                switch pattern[i] {
+                case ".":
+                    break
+                case "#":
+                    states[state] = 0
+                case "?":
+                    break
+                default:
+                    fatalError()
+                }
+
+            default:
+                fatalError()
+            }
+        }
+    }
+
+
+    results[i] = states[states.count - 2] + states[states.count - 1]
 }
-
-// #???..#?#???????.?# 3,1,2,1,1,1
-// ?????.?????#?#????. 2,1,1,5,1
-let lines = [".?#?????.???????? 3,1,1,4"]
-//let lines = ["?###???????? 3,2,1"]
-//let lines = ["???.### 1,1,3"]
-//let lines = mainInput.components(separatedBy: "\n")
-//let lines = input.components(separatedBy: "\n")
-//let line = lines.last!
-//print(line)
-//print(numberOfCombinations(for: line))
-
-let result = lines
-    .map { print(); return numberOfCombinations(for: $0) }
-    .reduce(0, +)
-
-print(result)
-// 7286
-
+print(results.reduce(0, +))
