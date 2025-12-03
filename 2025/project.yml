@@ -7,16 +7,21 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/Core]
-  SecretEntrance:
+  01-SecretEntrance:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/01 Secret Entrance]
-  GiftShop:
+  02-GiftShop:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/02 Gift Shop]
+  03-Lobby:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/03 Lobby]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
