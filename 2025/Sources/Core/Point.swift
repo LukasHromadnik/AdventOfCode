@@ -25,8 +25,29 @@ public struct Point: Hashable {
         Point(i, j + 1)
     }
 
-    public func neighbors() -> [Point] {
+    public func upLeft() -> Point {
+        Point(i - 1, j - 1)
+    }
+
+    public func upRight() -> Point {
+        Point(i - 1, j + 1)
+    }
+
+    public func downLeft() -> Point {
+        Point(i + 1, j - 1)
+    }
+
+    public func downRight() -> Point {
+        Point(i + 1, j + 1)
+    }
+
+    // Previously neighbors
+    public func neighbors4() -> [Point] {
         [up(), left(), down(), right()]
+    }
+
+    public func neighbors8() -> [Point] {
+        [up(), left(), down(), right(), upLeft(), upRight(), downLeft(), downRight()]
     }
 }
 
