@@ -29,6 +29,13 @@ targets:
     sources: [Sources/04 Printing Department]
     dependencies:
       - target: Core
+  05-Cafeteria:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/05 Cafeteria]
+    dependencies:
+      - target: Core
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
