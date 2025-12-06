@@ -34,6 +34,11 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/05 Cafeteria]
+  06-Task:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/06 Task]
     dependencies:
       - target: Core
 packages:
