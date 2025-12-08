@@ -48,6 +48,13 @@ targets:
     sources: [Sources/07 Laboratories]
     dependencies:
       - target: Core
+  08-Task:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/08 Task]
+    dependencies:
+      - target: Core
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
