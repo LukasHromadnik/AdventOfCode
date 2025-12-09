@@ -1,4 +1,5 @@
 import Foundation
+import AppKit
 
 public struct Point: Hashable {
     public let i: Int
@@ -54,5 +55,14 @@ public struct Point: Hashable {
 extension Point: CustomStringConvertible {
     public var description: String {
         "[\(i), \(j)]"
+    }
+}
+
+extension Point {
+    public var cgPoint: CGPoint {
+        CGPoint(x: i, y: j)
+    }
+    public var nsPoint: NSPoint {
+        NSPoint(x: i, y: j)
     }
 }

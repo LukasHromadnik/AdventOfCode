@@ -48,13 +48,18 @@ targets:
     sources: [Sources/07 Laboratories]
     dependencies:
       - target: Core
-  08-Task:
+  08-Playground:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/08 Task]
+    sources: [Sources/08 Playground]
     dependencies:
       - target: Core
+  09 Movie Theater:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/09 Movie Theater]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
