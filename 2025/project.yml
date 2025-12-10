@@ -7,48 +7,48 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/Core]
-  01-SecretEntrance:
+  01 Secret Entrance:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/01 Secret Entrance]
-  02-GiftShop:
+  02 Gift Shop:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/02 Gift Shop]
-  03-Lobby:
+  03 Lobby:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/03 Lobby]
-  04-PrintingDepartment:
+  04 Printing Department:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/04 Printing Department]
     dependencies:
       - target: Core
-  05-Cafeteria:
+  05 Cafeteria:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/05 Cafeteria]
-  06-Task:
+  06 Task:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/06 Task]
     dependencies:
       - target: Core
-  07-Laboratories:
+  07 Laboratories:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/07 Laboratories]
     dependencies:
       - target: Core
-  08-Playground:
+  08 Playground:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
@@ -60,6 +60,13 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/09 Movie Theater]
+  10 Factory:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/10 Factory]
+    dependencies:
+      - target: Core
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
