@@ -65,6 +65,11 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/10 Factory]
+  11 Reactor:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/11 Reactor]
     dependencies:
       - target: Core
 packages:

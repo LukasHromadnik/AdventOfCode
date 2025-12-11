@@ -1,3 +1,4 @@
 import Foundation
 
-print("Advent of code")
+let input = """
+"""
