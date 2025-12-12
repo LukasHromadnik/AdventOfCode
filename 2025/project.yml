@@ -70,8 +70,11 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/11 Reactor]
-    dependencies:
-      - target: Core
+  12 Christmas Tree Farm:
+    type: tool
+    platform: macOS
+    deploymentTarget: "15.0"
+    sources: [Sources/12 Christmas Tree Farm]
 packages:
   Collections:
     url: https://github.com/apple/swift-collections
