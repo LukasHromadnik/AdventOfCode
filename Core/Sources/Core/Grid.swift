@@ -63,8 +63,8 @@ extension Grid {
         rows[0].count
     }
 
-    public var indexes: [(Int, Int)] {
-        (0..<numberOfRows).flatMap { i in (0..<numberOfColumns).map { j in (i, j) } }
+    public var indexes: [Point] {
+        (0..<numberOfRows).flatMap { i in (0..<numberOfColumns).map { j in Point(i, j) } }
     }
 
     public subscript(_ row: Int) -> Row {

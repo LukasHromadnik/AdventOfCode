@@ -25,22 +25,19 @@ enum E: String, GridElement {
 var grid = Grid<E>(mainInput)
 while didChange {
     didChange = false
-    for i in 0..<grid.numberOfRows {
-        for j in 0..<grid.numberOfColumns {
-            let point = Point(i, j)
-            guard grid[point] == .roll else { continue }
-            let neighbors: [E] = point.neighbors8().map { p in
-                if p.i < 0 || p.i >= grid.numberOfRows || p.j < 0 || p.j >= grid.numberOfColumns {
-                    return .empty
-                } else {
-                    return grid[p]
-                }
+    for point in grid.indexes {
+        guard grid[point] == .roll else { continue }
+        let neighbors: [E] = point.neighbors8().map { p in
+            if p.i < 0 || p.i >= grid.numberOfRows || p.j < 0 || p.j >= grid.numberOfColumns {
+                return .empty
+            } else {
+                return grid[p]
             }
-            let numberOfRolls = neighbors.count { $0 == .roll }
-            if numberOfRolls < 4 {
-                result.append(point)
-                didChange = true
-            }
+        }
+        let numberOfRolls = neighbors.count { $0 == .roll }
+        if numberOfRolls < 4 {
+            result.append(point)
+            didChange = true
         }
     }
 
@@ -50,3 +47,4 @@ while didChange {
 }
 //print(grid)
 print(result.count)
+assert(result.count == 9086)

@@ -1,4 +1,5 @@
 import Foundation
+import Core
 
 let input = """
 987654321111111
@@ -37,7 +38,7 @@ func biggest(
         in: Array(bank.dropFirst()),
         count: count - 1
     )
-    let a = (pow(10, count - 1) as NSDecimalNumber).intValue
+    let a = pow(10, count - 1)
     let maxValue1 = childMaxValue + a * prefix
 
     let maxValue2 = biggest(

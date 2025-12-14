@@ -12,11 +12,15 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/02 Gift Shop]
+    dependencies:
+      - package: Core
   03 Lobby:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/03 Lobby]
+    dependencies:
+      - package: Core
   04 Printing Department:
     type: tool
     platform: macOS
@@ -29,6 +33,8 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/05 Cafeteria]
+    dependencies:
+      - package: Core
   06 Trash Compactor:
     type: tool
     platform: macOS
@@ -60,6 +66,8 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/10 Factory]
+    dependencies:
+      - package: Core
   11 Reactor:
     type: tool
     platform: macOS
