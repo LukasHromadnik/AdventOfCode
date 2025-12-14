@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol GridElement: Hashable, Equatable, RawRepresentable<String> { }
+public protocol GridElement: Hashable, Equatable, Sendable, SendableMetatype, RawRepresentable<String> { }
 
 extension String: @retroactive RawRepresentable {}
 extension String: GridElement {
@@ -89,3 +89,4 @@ extension Grid: CustomStringConvertible {
         return result
     }
 }
+

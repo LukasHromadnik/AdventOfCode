@@ -2,11 +2,6 @@ name: AdventOfCode
 options:
   bundleIdPrefix: cz.lukashromadnik
 targets:
-  Core:
-    type: framework
-    platform: macOS
-    deploymentTarget: "15.0"
-    sources: [Sources/Core]
   01 Secret Entrance:
     type: tool
     platform: macOS
@@ -28,7 +23,7 @@ targets:
     deploymentTarget: "15.0"
     sources: [Sources/04 Printing Department]
     dependencies:
-      - target: Core
+      - package: Core
   05 Cafeteria:
     type: tool
     platform: macOS
@@ -40,21 +35,21 @@ targets:
     deploymentTarget: "15.0"
     sources: [Sources/06 Trash Compactor]
     dependencies:
-      - target: Core
+      - package: Core
   07 Laboratories:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/07 Laboratories]
     dependencies:
-      - target: Core
+      - package: Core
   08 Playground:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/08 Playground]
     dependencies:
-      - target: Core
+      - package: Core
   09 Movie Theater:
     type: tool
     platform: macOS
@@ -82,3 +77,5 @@ packages:
   Algorithms:
     url: https://github.com/apple/swift-algorithms
     from: 1.2.0
+  Core:
+    path: ../Core
