@@ -34,11 +34,11 @@ targets:
     platform: macOS
     deploymentTarget: "15.0"
     sources: [Sources/05 Cafeteria]
-  06 Task:
+  06 Trash Compactor:
     type: tool
     platform: macOS
     deploymentTarget: "15.0"
-    sources: [Sources/06 Task]
+    sources: [Sources/06 Trash Compactor]
     dependencies:
       - target: Core
   07 Laboratories:
